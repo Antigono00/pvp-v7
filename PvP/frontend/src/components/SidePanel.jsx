@@ -454,7 +454,8 @@ const SidePanel = ({ isOpen }) => {
                 cursor: 'pointer',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                flexShrink: 0 // Prevent button from shrinking
               }}
             >
               <span style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -468,11 +469,12 @@ const SidePanel = ({ isOpen }) => {
                 padding: '15px',
                 backgroundColor: '#1e1e1e',
                 flex: 1,
-                overflowY: 'auto',
+                overflowY: 'auto', // Enable scrolling
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '10px',
-                minHeight: isMobile ? 'calc(100vh - 150px)' : '450px' // Increased height
+                minHeight: '0', // Important for flex containers to enable scrolling
+                height: '100%' // Fill available space
               }}>
                 {/* Back button for mobile */}
                 {isMobile && (
@@ -489,7 +491,8 @@ const SidePanel = ({ isOpen }) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '5px'
+                      gap: '5px',
+                      flexShrink: 0 // Prevent from shrinking
                     }}
                   >
                     <span>◀</span> Back to Menu
@@ -506,7 +509,8 @@ const SidePanel = ({ isOpen }) => {
                   return (
                     <div key={type} style={{
                       opacity: (!canBuild || !affordable) ? 0.6 : 1,
-                      marginBottom: '10px'
+                      marginBottom: '10px',
+                      flexShrink: 0 // Prevent items from shrinking
                     }}>
                       <button
                         onClick={() => handleBuild(type)}
@@ -620,7 +624,8 @@ const SidePanel = ({ isOpen }) => {
                 cursor: 'pointer',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                flexShrink: 0 // Prevent button from shrinking
               }}
             >
               <span style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -634,11 +639,12 @@ const SidePanel = ({ isOpen }) => {
                 padding: '15px',
                 backgroundColor: '#1e1e1e',
                 flex: 1,
-                overflowY: 'auto',
+                overflowY: 'auto', // Enable scrolling
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '15px',
-                minHeight: isMobile ? 'calc(100vh - 150px)' : '450px' // Increased height
+                minHeight: '0', // Important for flex containers to enable scrolling
+                height: '100%' // Fill available space
               }}>
                 {/* Back button for mobile */}
                 {isMobile && (
@@ -655,7 +661,8 @@ const SidePanel = ({ isOpen }) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '5px'
+                      gap: '5px',
+                      flexShrink: 0 // Prevent from shrinking
                     }}
                   >
                     <span>◀</span> Back to Menu
@@ -672,7 +679,8 @@ const SidePanel = ({ isOpen }) => {
                     <div key={type} style={{
                       backgroundColor: '#2a2a2a',
                       borderRadius: '8px',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      flexShrink: 0 // Prevent from shrinking
                     }}>
                       <div style={{
                         padding: '10px',
@@ -807,7 +815,8 @@ const SidePanel = ({ isOpen }) => {
                 cursor: 'pointer',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                flexShrink: 0 // Prevent button from shrinking
               }}
             >
               <span style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -821,8 +830,11 @@ const SidePanel = ({ isOpen }) => {
                 padding: '15px',
                 backgroundColor: '#1e1e1e',
                 flex: 1,
-                overflowY: 'auto',
-                minHeight: isMobile ? 'calc(100vh - 150px)' : '450px' // Increased height
+                overflowY: 'auto', // Enable scrolling
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '0', // Important for flex containers to enable scrolling
+                height: '100%' // Fill available space
               }}>
                 {/* Back button for mobile */}
                 {isMobile && (
@@ -839,7 +851,8 @@ const SidePanel = ({ isOpen }) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '5px'
+                      gap: '5px',
+                      flexShrink: 0 // Prevent from shrinking
                     }}
                   >
                     <span>◀</span> Back to Menu
@@ -850,7 +863,10 @@ const SidePanel = ({ isOpen }) => {
                 <div style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '15px'
+                  gap: '15px',
+                  flex: 1,
+                  overflowY: 'auto', // Enable scrolling for this container
+                  minHeight: '0' // Important for flex containers to enable scrolling
                 }}>
                   {/* Instructions/Move state indicator */}
                   {inMoveMode ? (
@@ -860,7 +876,8 @@ const SidePanel = ({ isOpen }) => {
                       background: 'rgba(255, 215, 0, 0.2)',
                       border: '2px solid #FFD700',
                       borderRadius: '8px',
-                      textAlign: 'center'
+                      textAlign: 'center',
+                      flexShrink: 0 // Prevent from shrinking
                     }}>
                       <p style={{ fontWeight: 'bold', margin: '0', color: '#FFD700' }}>
                         MOVE MODE ACTIVE
@@ -872,7 +889,10 @@ const SidePanel = ({ isOpen }) => {
                       </p>
                     </div>
                   ) : (
-                    <div style={{ marginBottom: '15px' }}>
+                    <div style={{ 
+                      marginBottom: '15px',
+                      flexShrink: 0 // Prevent from shrinking
+                    }}>
                       <p>Select a machine to move. Cost: <strong>50 TCorvax</strong></p>
                       <p style={{ color: tcorvax >= 50 ? 'inherit' : '#ff6b6b' }}>
                         Your balance: {formatResource(tcorvax)} TCorvax
@@ -907,7 +927,13 @@ const SidePanel = ({ isOpen }) => {
                   )}
 
                   {/* Machine selection */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: '15px',
+                    overflowY: 'auto', // This is likely redundant but kept for safety
+                    flexShrink: 0 // Prevent from shrinking as a whole
+                  }}>
                     {Object.keys(currentRoomMachinesByType).length === 0 ? (
                       <p style={{ color: '#ff6b6b', textAlign: 'center' }}>No machines in this room to move.</p>
                     ) : (
@@ -918,7 +944,8 @@ const SidePanel = ({ isOpen }) => {
                           <div key={type} style={{
                             backgroundColor: '#2a2a2a',
                             borderRadius: '8px',
-                            overflow: 'hidden'
+                            overflow: 'hidden',
+                            flexShrink: 0 // Prevent items from shrinking
                           }}>
                             <div style={{
                               padding: '10px',
@@ -972,7 +999,8 @@ const SidePanel = ({ isOpen }) => {
                       marginTop: '20px',
                       padding: '15px',
                       background: 'rgba(33, 150, 243, 0.1)',
-                      borderRadius: '8px'
+                      borderRadius: '8px',
+                      flexShrink: 0 // Prevent from shrinking
                     }}>
                       <p style={{ margin: '0 0 10px 0', fontWeight: 'bold' }}>
                         Tip: You can move machines between rooms!
