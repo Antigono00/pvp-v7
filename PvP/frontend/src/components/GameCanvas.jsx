@@ -1736,43 +1736,39 @@ const GameCanvas = () => {
       {/* Room Navigation Component */}
       {isLoggedIn && <RoomNavigation />}
 
-      {/* Move confirmation dialog - ADAPTIVE POSITIONING AND SIZING BASED ON DEVICE */}
+      {/* Move confirmation dialog - FIXED FOR MOBILE VISIBILITY */}
       {moveConfirmationOpen && (
         <div style={{
-          position: 'absolute',
+          position: 'fixed', // Changed from 'absolute' to 'fixed'
           ...(isMobile 
             ? {
-                // Mobile positioning: below the canvas
-                top: '100%',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                marginTop: '5px', // Reduced from 10px
-                zIndex: 990,  // Lower z-index
-                maxWidth: '300px', // Smaller max width for mobile
-                padding: '10px', // Reduced padding for mobile
-                fontSize: '14px' // Smaller font for mobile
-              } 
-            : {
-                // Desktop positioning: centered on screen
+                // Mobile positioning: centered on screen
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                zIndex: 1000,  // Higher z-index to appear over canvas on desktop
-                maxWidth: '400px',
-                padding: '15px',
-                fontSize: '16px'
+                zIndex: 2000,  // Slightly increased z-index to be visible
+                maxWidth: '300px'
+              } 
+            : {
+                // Desktop positioning: unchanged
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 1000,
+                maxWidth: '400px'
               }
           ),
           backgroundColor: 'rgba(30, 30, 30, 0.95)',
           borderRadius: '10px',
           boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
-          width: isMobile ? '85%' : '90%', // Slightly narrower on mobile
-          textAlign: 'center'
+          width: isMobile ? '85%' : '90%',
+          textAlign: 'center',
+          padding: '15px'
         }}>
           <h3 style={{ 
             margin: '0 0 8px 0', 
             color: '#FFD700',
-            fontSize: isMobile ? '16px' : '18px' // Smaller heading on mobile
+            fontSize: isMobile ? '16px' : '18px'
           }}>
             Confirm Machine Move
           </h3>
@@ -1804,8 +1800,8 @@ const GameCanvas = () => {
                 backgroundColor: '#333', 
                 flex: 1, 
                 marginRight: '10px',
-                padding: isMobile ? '8px 5px' : '12px 10px', // Smaller padding on mobile
-                fontSize: isMobile ? '13px' : '15px', // Smaller font on mobile
+                padding: isMobile ? '8px 5px' : '12px 10px',
+                fontSize: isMobile ? '13px' : '15px',
                 color: 'white',
                 border: 'none',
                 borderRadius: '5px',
@@ -1820,8 +1816,8 @@ const GameCanvas = () => {
                 backgroundColor: tcorvax >= 50 ? '#4CAF50' : '#999', 
                 flex: 1,
                 opacity: tcorvax >= 50 ? 1 : 0.7,
-                padding: isMobile ? '8px 5px' : '12px 10px', // Smaller padding on mobile
-                fontSize: isMobile ? '13px' : '15px', // Smaller font on mobile
+                padding: isMobile ? '8px 5px' : '12px 10px',
+                fontSize: isMobile ? '13px' : '15px',
                 color: 'white',
                 border: 'none',
                 borderRadius: '5px',
@@ -1835,18 +1831,18 @@ const GameCanvas = () => {
         </div>
       )}
 
-      {/* Pet Move Confirmation - ADDED */}
+      {/* Pet Move Confirmation - WITH SAME FIX */}
       {inPetMoveMode && selectedPetToMove && positionSelected && (
         <div style={{
-          position: 'absolute',
-          top: isMobile ? '90%' : '50%',
+          position: 'fixed', // Changed from 'absolute' to 'fixed'
+          top: '50%',
           left: '50%',
-          transform: isMobile ? 'translateX(-50%)' : 'translate(-50%, -50%)',
+          transform: 'translate(-50%, -50%)',
           backgroundColor: 'rgba(30, 30, 30, 0.95)',
           padding: '15px',
           borderRadius: '10px',
           boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
-          zIndex: 1000,
+          zIndex: 2000, // Slightly increased z-index to be visible
           width: isMobile ? '85%' : '90%',
           maxWidth: isMobile ? '300px' : '400px',
           textAlign: 'center'
